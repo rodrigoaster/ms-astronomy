@@ -6,6 +6,9 @@
   "keywords": [],
   "author": "Aster",
   "license": "ISC",
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.1",
     "@typescript-eslint/eslint-plugin": "^5.59.7",
