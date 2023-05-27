@@ -1,4 +1,4 @@
-import { type ICreateStarDto } from "src/app/dto/star/createStar.dto";
+import { type ICreateStarDto } from "src/app/dtos/star/createStar.dto";
 
 export const validateFields = (star: ICreateStarDto) => {
   if (!star) {

@@ -1,15 +1,17 @@
+import { randomUUID } from 'crypto'
+
 export class Star {
-  id?: string;
+  id: string;
   name: string;
   age: string;
   description: string;
   color: string;
 
-  constructor({ id, name, age, description, color }) {
-    this.id = id;
-    this.name = name;
-    this.age = age;
-    this.description = description;
-    this.color = color;
+  constructor(props: Omit<Star, "id">, id?: string) {
+    Object.assign(this, props)
+
+    if (!id) {
+      this.id = randomUUID()
+    }
   }
 }
