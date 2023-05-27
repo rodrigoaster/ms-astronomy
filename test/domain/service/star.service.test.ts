@@ -1,14 +1,14 @@
-import { IStarOut } from "../../../src/app/ports/out/star.query";
-import { Star } from "../../../src/domain/entities/star.entity";
-import { StarService } from "../../../src/domain/service/star.service";
-import { ICreateStarDto } from "../../../src/app/dtos/star/createStar.dto";
-import { validateFields } from "../../../src/domain/helper/validateFields.helper";
+import { type ICreateStarDto } from '../../../src/app/dtos/star/createStar.dto';
+import { type IStarOut } from '../../../src/app/ports/out/star.query';
+import { Star } from '../../../src/domain/entities/star.entity';
+import { validateFields } from '../../../src/domain/helper/validateFields.helper';
+import { StarService } from '../../../src/domain/service/star.service';
 
 class InMemoryRepository implements IStarOut {
-  private stars: Star[] = []
+  private readonly stars: Star[] = [];
 
   async createStar(data: ICreateStarDto): Promise<Star> {
-    validateFields(data)
+    validateFields(data);
 
     const { name, age, description, color } = data;
 
@@ -16,31 +16,29 @@ class InMemoryRepository implements IStarOut {
       name,
       age,
       description,
-      color
-    })
+      color,
+    });
 
-    return star
+    return star;
   }
 }
 
-describe("CreateStarService", () => {
-  const repository = new InMemoryRepository()
+describe('CreateStarService', () => {
+  const repository = new InMemoryRepository();
   const service = new StarService(repository);
 
-  it("should be create an star", async () => {
+  it('should be create an star', async () => {
     const starProps = {
-      name: "Sirius",
-      age: "1000 Anos-luz",
-      description: "Star in constellation of Águia",
-      color: "Blue",
+      name: 'Sirius',
+      age: '1000 Anos-luz',
+      description: 'Star in constellation of Águia',
+      color: 'Blue',
     };
 
     const response = await service.createStar(starProps);
-    console.log(response);
-
 
     expect(response).toBeDefined();
     expect(response).toBeInstanceOf(Star);
-    expect(response).toHaveProperty("id")
+    expect(response).toHaveProperty('id');
   });
 });

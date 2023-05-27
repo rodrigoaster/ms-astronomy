@@ -1,12 +1,13 @@
-import { type IStarIn } from "src/app/ports/in/star.port";
+import { type ICreateStarDto } from 'src/app/dtos/star/createStar.dto';
+import { type IStarIn } from 'src/app/ports/in/star.port';
+import { type IStarOut } from 'src/app/ports/out/star.query';
 
-import { Star } from "../entities/star.entity";
-import { validateFields } from "../helper/validateFields.helper";
-import { IStarOut } from "src/app/ports/out/star.query";
-import { ICreateStarDto } from "src/app/dtos/star/createStar.dto";
+import { Star } from '../entities/star.entity';
+import { validateFields } from '../helper/validateFields.helper';
 
 export class StarService implements IStarIn {
-  constructor(private starQuery: IStarOut) { }
+  constructor(private readonly starQuery: IStarOut) {}
+
   async createStar(data: ICreateStarDto): Promise<Star> {
     validateFields(data);
 
@@ -16,9 +17,9 @@ export class StarService implements IStarIn {
       name,
       age,
       description,
-      color
-    })
+      color,
+    });
 
-    return star
+    return star;
   }
 }
